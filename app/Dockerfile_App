@@ -1,11 +1,13 @@
-FROM vanjoge/mediasoup-demo:dev AS stage-one
+FROM vanjoge/mediasoup-demo AS stage-one
 
 WORKDIR /app
 
 COPY . .
-RUN npm install
 
 RUN set -ex \
+  && apt-get update \
+  && apt-get install -y git \
+  && npm install \
   && apt-get  autoremove -y git \
   && rm -rf /var/lib/apt/lists/*
 
