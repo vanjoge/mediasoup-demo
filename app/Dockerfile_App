@@ -6,7 +6,7 @@ COPY . .
 RUN npm install
 
 RUN set -ex \
-  && apt-get autoremove git \
+  && apt-get -f autoremove git \
   && rm -rf /var/lib/apt/lists/*
 
 CMD ["npm", "start"]
