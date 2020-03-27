@@ -1,4 +1,4 @@
-FROM vanjoge/mediasoup-demo:Dev AS stage-one
+FROM vanjoge/mediasoup-demo:dev AS stage-one
 
 WORKDIR /app
 
