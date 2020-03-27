@@ -6,7 +6,7 @@ RUN \
 	&& apt-get update \
 	&& apt-get install -y net-tools build-essential valgrind
 
-WORKDIR /service
+WORKDIR /server
 
 COPY package.json .
 RUN npm install
@@ -15,4 +15,4 @@ COPY server.js .
 COPY lib lib
 #COPY certs certs
 
-CMD ["node", "/service/server.js"]
+CMD ["node", "/server/server.js"]
