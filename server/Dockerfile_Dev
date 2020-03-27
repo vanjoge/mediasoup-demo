@@ -1,0 +1,18 @@
+FROM node:10-slim AS stage-one
+
+# Install DEB dependencies and others.
+RUN set -ex \
+  && apt-get update \
+  && apt-get install -y make gcc g++ python git 
+
+WORKDIR /server
+
+COPY package.json .
+RUN npm install
+
+COPY server.js .
+#COPY config.js .
+COPY lib lib
+#COPY certs certs
+
+CMD ["node", "/server/server.js"]
