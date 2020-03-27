@@ -1,22 +1,18 @@
 FROM node:10-slim AS stage-one
 
+WORKDIR /server
+
+COPY package.json .
+
 # Install DEB dependencies and others.
 RUN set -ex \
   && apt-get update \
   && apt-get install -y make gcc g++ python git \
+  && npm install \
+  && apt-get  autoremove -y git \
   && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /server
-
-COPY package.json .
-RUN npm install
-
 COPY server.js .
-#COPY config.js .
 COPY lib lib
-#COPY certs certs
-
-RUN set -ex \
-  && apt-get  autoremove -y git 
 
 CMD ["node", "/server/server.js"]
