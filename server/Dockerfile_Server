@@ -10,7 +10,11 @@ RUN set -ex \
   && apt-get install -y make gcc g++ python git \
   && npm install \
   && apt-get  autoremove -y git \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/*  node_modules/mediasoup/art node_modules/mediasoup/doc node_modules/mediasoup/rust node_modules/mediasoup/src node_modules/mediasoup/test \
+  && mkdir -p node_modules/mediasoup/worker2/out/Release/ \
+  && cp node_modules/mediasoup/worker/out/Release/mediasoup-worker node_modules/mediasoup/worker2/out/Release/ \
+  && rm -rf node_modules/mediasoup/worker \
+  && mv node_modules/mediasoup/worker2 node_modules/mediasoup/worker
 
 COPY server.js .
 COPY lib lib
